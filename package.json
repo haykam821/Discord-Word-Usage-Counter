@@ -1,0 +1,23 @@
+{
+	"name": "discord-word-usage-counter",
+	"version": "1.0.0",
+	"description": "A Discord bot to count a word's usage.",
+	"main": "./src/index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/haykam821/Discord-Word-Usage-Counter.git"
+	},
+	"keywords": [
+		"discord",
+		"bot"
+	],
+	"author": "haykam821",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/haykam821/Discord-Word-Usage-Counter/issues"
+	},
+	"homepage": "https://github.com/haykam821/Discord-Word-Usage-Counter#readme"
+}
