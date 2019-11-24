@@ -23,6 +23,7 @@ client.registry.registerCommandsIn(path.resolve(__dirname, "./commands"));
 
 client.on("message", async msg => {
 	for await (const [ targetName, target ] of Object.entries(config.targets)) {
+		if (msg.author.id === client.user.id) break;
 		if (!target.authors.includes(msg.author.id)) break;
 
 		const match = new RegExp(target.match, "g");
