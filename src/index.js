@@ -16,7 +16,7 @@ client.setProvider(providerPromise);
 
 // Register groups/commands/arguments
 client.registry.registerGroups([
-	["word_usage", "Word usage"],
+	["count", "Count tracking"],
 ]);
 client.registry.registerDefaults();
 client.registry.registerCommandsIn(path.resolve(__dirname, "./commands"));
