@@ -19,5 +19,11 @@
 	"bugs": {
 		"url": "https://github.com/haykam821/Discord-Word-Usage-Counter/issues"
 	},
-	"homepage": "https://github.com/haykam821/Discord-Word-Usage-Counter#readme"
+	"homepage": "https://github.com/haykam821/Discord-Word-Usage-Counter#readme",
+	"dependencies": {
+		"discord.js": "^11.5.1",
+		"discord.js-commando": "^0.10.0",
+		"sqlite": "^3.0.3",
+		"string-format": "^2.0.0"
+	}
 }
