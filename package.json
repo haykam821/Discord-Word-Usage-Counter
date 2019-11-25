@@ -4,7 +4,8 @@
 	"description": "A Discord bot to count a word's usage.",
 	"main": "./src/index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"lint": "eslint \"./**/*.js\""
 	},
 	"repository": {
 		"type": "git",
@@ -26,5 +27,17 @@
 		"discord.js-commando": "^0.10.0",
 		"sqlite": "^3.0.3",
 		"string-format": "^2.0.0"
+	},
+	"devDependencies": {
+		"eslint": "^6.7.1",
+		"eslint-config-haykam": "^1.8.0",
+		"eslint-plugin-extra-rules": "0.0.0-development",
+		"eslint-plugin-html": "^6.0.0",
+		"eslint-plugin-json": "^1.4.0",
+		"eslint-plugin-markdown": "^1.0.1",
+		"eslint-plugin-unicorn": "^10.0.0"
+	},
+	"eslintConfig": {
+		"extends": "eslint-config-haykam"
 	}
 }
