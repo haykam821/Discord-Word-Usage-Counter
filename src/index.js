@@ -1,3 +1,6 @@
+const debug = require("debug");
+const log = debug("discord-word-usage-counter");
+
 const config = require("../config.json");
 
 const Commando = require("discord.js-commando");
@@ -33,8 +36,12 @@ client.on("message", async msg => {
 		const matchCount = Math.min((matches || []).length, target.maxMatches === -1 ? Infinity : target.maxMatches);
 		if (matchCount === 0) break;
 
+		// All checks passed; update count
+		log("Target '%s' matched for message by %s, updating count", targetName, msg.author.tag);
+
 		const oldCount = client.settings.get("count:" + targetName, 0);
 		const newCount = await client.settings.set("count:" + targetName, oldCount + matchCount);
+		log("Updated '%s' count to %d", targetName, newCount);
 		
 		// Set role name to reflect new count
 		const displayRole = msg.guild.roles.get(target.displayRole);
@@ -42,7 +49,10 @@ client.on("message", async msg => {
 		displayRole.setName(format(target.displayRoleFormat, {
 			count: newCount,
 		}, `Updated count for ${targetName} target`));
+		log("Updated '%s' display role's name to match new count", targetName);
 	}
 });
 
-client.login(config.token);
+client.login(config.token).then(() => {
+	log("connected to discord");
+});
