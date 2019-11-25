@@ -1,7 +1,9 @@
 const config = require("../config.json");
 
 const Commando = require("discord.js-commando");
-const client = new Commando.Client();
+const client = new Commando.Client({
+	owner: config.owner,
+});
 
 const path = require("path");
 const sqlite = require("sqlite");
