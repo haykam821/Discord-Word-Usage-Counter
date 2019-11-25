@@ -16,12 +16,12 @@ module.exports = class GetCountCommand extends Command {
 		});
 	}
 
-	async run(msg, args) {
+	run(msg, args) {
 		const value = this.client.settings.get("count:" + args.count);
 		if (value === undefined) {
 			return msg.reply("The `" + args.count + "` count doesn't exist.");
 		}
 
-		return msg.reply("The `" + args.count + "` count is currently at " + value + ".")
+		return msg.reply("The `" + args.count + "` count is currently at " + value + ".");
 	}
-}
+};

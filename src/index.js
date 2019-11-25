@@ -42,7 +42,7 @@ client.on("message", async msg => {
 		const oldCount = client.settings.get("count:" + targetName, 0);
 		const newCount = await client.settings.set("count:" + targetName, oldCount + matchCount);
 		log("Updated '%s' count to %d", targetName, newCount);
-		
+
 		// Set role name to reflect new count
 		const displayRole = msg.guild.roles.get(target.displayRole);
 		if (!displayRole) break;
