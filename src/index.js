@@ -27,6 +27,8 @@ client.registry.registerDefaults();
 client.registry.registerCommandsIn(path.resolve(__dirname, "./commands"));
 
 client.on("message", async msg => {
+	if (msg.isCommand) return;
+
 	for await (const [ targetName, target ] of Object.entries(config.targets)) {
 		if (msg.author.id === client.user.id) break;
 		if (!target.authors.includes(msg.author.id)) break;
