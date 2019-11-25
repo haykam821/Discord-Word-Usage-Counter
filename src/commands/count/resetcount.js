@@ -1,4 +1,5 @@
 const { Command } = require("discord.js-commando");
+const permissions = require("discord.js").Permissions.FLAGS;
 
 module.exports = class ResetCountCommand extends Command {
 	constructor(client) {
@@ -13,6 +14,9 @@ module.exports = class ResetCountCommand extends Command {
 			group: "count",
 			memberName: "resetcount",
 			name: "resetcount",
+			userPermissions: [
+				permissions.MANAGE_ROLES,
+			],
 		});
 	}
 
