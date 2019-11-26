@@ -15,7 +15,7 @@ module.exports = class ResetCountCommand extends Command {
 			memberName: "resetcount",
 			name: "resetcount",
 			userPermissions: [
-				"ADMINISTRATOR",
+				"MANAGE_ROLES",
 			],
 		});
 	}
