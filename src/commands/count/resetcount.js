@@ -1,6 +1,4 @@
 const { Command } = require("discord.js-commando");
-const permissions = require("discord.js").Permissions.FLAGS;
-
 module.exports = class ResetCountCommand extends Command {
 	constructor(client) {
 		super(client, {
@@ -21,6 +19,10 @@ module.exports = class ResetCountCommand extends Command {
 	}
 
 	run(msg, args) {
+		if (!args.count.match(/^[a-z0-9_-]+$/)) {
+			return msg.reply("That counter could not be reset because it is not a valid count identifier.");
+		}
+
 		return this.client.settings.set("count:" + args.count, 0).then(() => {
 			return msg.reply("The `" + args.count + "` counter has been reset to its initial value.");
 		}).catch(() => {
