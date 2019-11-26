@@ -1,5 +1,6 @@
-const { Command } = require("discord.js-commando");
+const isIdentifier = require("../../is-identifier");
 
+const { Command } = require("discord.js-commando");
 module.exports = class GetCountCommand extends Command {
 	constructor(client) {
 		super(client, {
@@ -17,8 +18,7 @@ module.exports = class GetCountCommand extends Command {
 	}
 
 	run(msg, args) {
-		console.log(args.count);
-		if (!args.count.match(/^[a-z0-9_-]+$/)) {
+		if (!isIdentifier(args.count)) {
 			return msg.reply("That is not a valid count identifier.");
 		}
 

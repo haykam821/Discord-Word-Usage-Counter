@@ -1,3 +1,5 @@
+const isIdentifier = require("../../is-identifier");
+
 const { Command } = require("discord.js-commando");
 module.exports = class ResetCountCommand extends Command {
 	constructor(client) {
@@ -19,7 +21,7 @@ module.exports = class ResetCountCommand extends Command {
 	}
 
 	run(msg, args) {
-		if (!args.count.match(/^[a-z0-9_-]+$/)) {
+		if (!isIdentifier(args.count)) {
 			return msg.reply("That counter could not be reset because it is not a valid count identifier.");
 		}
 
