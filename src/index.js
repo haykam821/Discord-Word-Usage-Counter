@@ -4,7 +4,10 @@ const log = debug("discord-word-usage-counter");
 const config = require("../config.json");
 
 const Commando = require("discord.js-commando");
+const { Intents } = require("discord.js");
+
 const client = new Commando.Client({
+	intents: Intents.NON_PRIVILEGED,
 	owner: config.owner,
 });
 
@@ -46,7 +49,7 @@ client.on("message", async msg => {
 		log("Updated '%s' count to %d", targetName, newCount);
 
 		// Set role name to reflect new count
-		const displayRole = msg.guild.roles.get(target.displayRole);
+		const displayRole = await msg.guild.roles.fetch(target.displayRole);
 		if (!displayRole) break;
 		displayRole.setName(format(target.displayRoleFormat, {
 			count: newCount,
