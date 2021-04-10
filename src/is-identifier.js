@@ -4,6 +4,6 @@
  * @returns {boolean} Whether the count identifier is valid.
  */
 function isIdentifier(id) {
-	return !!id.match(/^[a-z0-9_-]+$/);
+	return !!id.match(/^[\d_a-z-]+$/);
 }
 module.exports = isIdentifier;
