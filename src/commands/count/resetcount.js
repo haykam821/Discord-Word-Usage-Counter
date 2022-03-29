@@ -25,10 +25,13 @@ module.exports = class ResetCountCommand extends Command {
 			return msg.reply("That counter could not be reset because it is not a valid count identifier.");
 		}
 
-		return this.client.settings.set("count:" + args.count, 0).then(() => {
-			return msg.reply("The `" + args.count + "` counter has been reset to its initial value.");
-		}).catch(() => {
-			return msg.reply("The `" + args.count + "` counter could not be reset to its initial value.");
-		});
+		return this.client.settings
+			.set("count:" + args.count, 0)
+			.then(() => {
+				return msg.reply("The `" + args.count + "` counter has been reset to its initial value.");
+			})
+			.catch(() => {
+				return msg.reply("The `" + args.count + "` counter could not be reset to its initial value.");
+			});
 	}
 };

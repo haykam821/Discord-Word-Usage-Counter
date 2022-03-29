@@ -31,10 +31,13 @@ module.exports = class SetCountCommand extends Command {
 		}
 
 		const oldValue = this.client.settings.get("count:" + args.count);
-		return this.client.settings.set("count:" + args.count, args.value).then(() => {
-			return msg.reply(`The \`${args.count}\` counter has been changed from ${oldValue} to ${args.value}, but role names have not been updated.`);
-		}).catch(() => {
-			return msg.reply("The `" + args.count + "` counter could not be changed.");
-		});
+		return this.client.settings
+			.set("count:" + args.count, args.value)
+			.then(() => {
+				return msg.reply(`The \`${args.count}\` counter has been changed from ${oldValue} to ${args.value}, but role names have not been updated.`);
+			})
+			.catch(() => {
+				return msg.reply("The `" + args.count + "` counter could not be changed.");
+			});
 	}
 };

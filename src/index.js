@@ -16,12 +16,6 @@ const sqlite = require("sqlite");
 
 const format = require("string-format");
 
-// Set database provider
-const providerPromise = sqlite.open(path.resolve(__dirname, "./settings.sqlite3")).then(db => {
-	return new Commando.SQLiteProvider(db);
-});
-client.setProvider(providerPromise);
-
 // Register groups/commands/arguments
 client.registry.registerGroups([
 	["count", "Count tracking"],
@@ -58,6 +52,15 @@ client.on("message", async msg => {
 	}
 });
 
-client.login(config.token).then(() => {
+async function start() {
+	const dbPath = path.resolve(__dirname, "./settings.sqlite3");
+	const db = await sqlite.open(dbPath);
+
+	// Set database provider
+	client.setProvider(new Commando.SQLiteProvider(db));
+
+	await client.login(config.token);
 	log("connected to discord");
-});
+}
+/* eslint-disable-next-line unicorn/prefer-top-level-await */
+start();
