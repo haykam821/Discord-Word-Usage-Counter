@@ -17,7 +17,8 @@
 		"types": [
 			"@types/debug",
 			"@types/node",
-			"@types/string-format"
+			"@types/string-format",
+			"@types/sqlite3"
 		]
 	}
 }

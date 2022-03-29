@@ -1,7 +1,8 @@
 import Commando, { CommandoMessage } from "discord.js-commando";
-import { Intents } from "discord.js";
 
+import { Intents } from "discord.js";
 import { WordUsageCounterConfig } from "./config/config";
+import { cached } from "sqlite3";
 import debug from "debug";
 import format from "string-format";
 import path from "node:path";
@@ -57,10 +58,11 @@ client.on("message", async msge => {
 });
 
 async function start() {
-	const dbPath = path.resolve(__dirname, "./settings.sqlite3");
-	const db = await sqlite.open(dbPath);
-
 	// Set database provider
+	const db = await sqlite.open({
+		driver: cached.Database,
+		filename: path.resolve(__dirname, "./settings.sqlite3"),
+	});
 	client.setProvider(new Commando.SQLiteProvider(db));
 
 	await client.login(config.token);

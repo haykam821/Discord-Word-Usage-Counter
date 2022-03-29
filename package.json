@@ -28,12 +28,14 @@
 		"debug": "^4.1.1",
 		"discord.js": "^12.5.1",
 		"discord.js-commando": "^0.12.2",
-		"sqlite": "^3.0.3",
+		"sqlite": "^4.0.25",
+		"sqlite3": "^5.0.2",
 		"string-format": "^2.0.0"
 	},
 	"devDependencies": {
 		"@types/debug": "^4.1.7",
 		"@types/node": "^17.0.23",
+		"@types/sqlite3": "^3.1.8",
 		"@types/string-format": "^2.0.0",
 		"@typescript-eslint/eslint-plugin": "^5.17.0",
 		"@typescript-eslint/parser": "^5.17.0",
