@@ -1,20 +1,23 @@
-const debug = require("debug");
+import Commando, { CommandoMessage } from "discord.js-commando";
+import { Intents } from "discord.js";
+
+import { WordUsageCounterConfig } from "./config/config";
+import debug from "debug";
+import format from "string-format";
+import path from "node:path";
+import sqlite from "sqlite";
+
 const log = debug("discord-word-usage-counter");
 
-const config = require("../config.json");
-
-const Commando = require("discord.js-commando");
-const { Intents } = require("discord.js");
+/* eslint-disable-next-line @typescript-eslint/no-var-requires */
+const config = require("../config.json") as WordUsageCounterConfig;
 
 const client = new Commando.Client({
-	intents: Intents.NON_PRIVILEGED,
 	owner: config.owner,
+	ws: {
+		intents: Intents.NON_PRIVILEGED,
+	},
 });
-
-const path = require("path");
-const sqlite = require("sqlite");
-
-const format = require("string-format");
 
 // Register groups/commands/arguments
 client.registry.registerGroups([
@@ -23,11 +26,12 @@ client.registry.registerGroups([
 client.registry.registerDefaults();
 client.registry.registerCommandsIn(path.resolve(__dirname, "./commands"));
 
-client.on("message", async msg => {
+client.on("message", async msge => {
+	const msg = msge as CommandoMessage;
 	if (msg.isCommand) return;
 
 	for await (const [ targetName, target ] of Object.entries(config.targets)) {
-		if (msg.author.id === client.user.id) break;
+		if (msg.author.id === client.user?.id) break;
 		if (!target.authors.includes(msg.author.id)) break;
 
 		const match = new RegExp(target.match, "g");

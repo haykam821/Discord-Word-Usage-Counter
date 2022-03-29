@@ -2,10 +2,13 @@
 	"name": "discord-word-usage-counter",
 	"version": "1.0.0",
 	"description": "A Discord bot to count a word's usage.",
-	"main": "./src/index.js",
+	"main": "./dist/index.js",
 	"scripts": {
+		"build": "tsc",
+		"start": "node ./dist/index.js",
+		"dev": "ts-node-dev --respawn ./src/index.ts",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"lint": "eslint \"./**/*.js\""
+		"lint": "eslint \"./**/*.ts\""
 	},
 	"repository": {
 		"type": "git",
@@ -29,6 +32,11 @@
 		"string-format": "^2.0.0"
 	},
 	"devDependencies": {
+		"@types/debug": "^4.1.7",
+		"@types/node": "^17.0.23",
+		"@types/string-format": "^2.0.0",
+		"@typescript-eslint/eslint-plugin": "^5.17.0",
+		"@typescript-eslint/parser": "^5.17.0",
 		"eslint": "^8.12.0",
 		"eslint-config-haykam": "^1.16.1",
 		"eslint-plugin-extra-rules": "^0.0.0-development",
@@ -37,9 +45,26 @@
 		"eslint-plugin-json": "^2.1.2",
 		"eslint-plugin-markdown": "^2.0.1",
 		"eslint-plugin-node": "^11.1.0",
-		"eslint-plugin-unicorn": "^28.0.2"
+		"eslint-plugin-unicorn": "^28.0.2",
+		"ts-node-dev": "^1.1.8",
+		"typescript": "^4.6.3"
 	},
 	"eslintConfig": {
-		"extends": "eslint-config-haykam"
+		"extends": [
+			"eslint-config-haykam",
+			"plugin:@typescript-eslint/eslint-recommended",
+			"plugin:@typescript-eslint/recommended"
+		],
+		"parser": "@typescript-eslint/parser",
+		"plugins": [
+			"@typescript-eslint"
+		],
+		"rules": {
+			"semi": "off",
+			"@typescript-eslint/semi": "error",
+			"no-shadow": "off",
+			"@typescript-eslint/no-shadow": "error",
+			"sort-imports": "error"
+		}
 	}
 }

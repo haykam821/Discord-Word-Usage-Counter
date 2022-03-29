@@ -108,3 +108,6 @@ config.json
 
 # Settings database
 settings.sqlite3
+
+# TypeScript output
+dist/

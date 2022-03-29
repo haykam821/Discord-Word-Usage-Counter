@@ -1,8 +1,9 @@
-const isIdentifier = require("../../is-identifier");
+import { Command, CommandoClient, CommandoMessage } from "discord.js-commando";
 
-const { Command } = require("discord.js-commando");
-module.exports = class ResetCountCommand extends Command {
-	constructor(client) {
+import isIdentifier from "../../is-identifier";
+
+export class ResetCountCommand extends Command {
+	constructor(client: CommandoClient) {
 		super(client, {
 			args: [{
 				key: "count",
@@ -20,8 +21,8 @@ module.exports = class ResetCountCommand extends Command {
 		});
 	}
 
-	run(msg, args) {
-		if (!isIdentifier(args.count)) {
+	run(msg: CommandoMessage, args: Record<string, unknown>) {
+		if (!isIdentifier(args.count as string)) {
 			return msg.reply("That counter could not be reset because it is not a valid count identifier.");
 		}
 
@@ -34,4 +35,4 @@ module.exports = class ResetCountCommand extends Command {
 				return msg.reply("The `" + args.count + "` counter could not be reset to its initial value.");
 			});
 	}
-};
+}

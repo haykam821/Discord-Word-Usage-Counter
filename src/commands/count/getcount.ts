@@ -1,8 +1,9 @@
-const isIdentifier = require("../../is-identifier");
+import { Command, CommandoClient, CommandoMessage } from "discord.js-commando";
 
-const { Command } = require("discord.js-commando");
-module.exports = class GetCountCommand extends Command {
-	constructor(client) {
+import isIdentifier from "../../is-identifier";
+
+export class GetCountCommand extends Command {
+	constructor(client: CommandoClient) {
 		super(client, {
 			args: [{
 				key: "count",
@@ -17,8 +18,8 @@ module.exports = class GetCountCommand extends Command {
 		});
 	}
 
-	run(msg, args) {
-		if (!isIdentifier(args.count)) {
+	run(msg: CommandoMessage, args: Record<string, unknown>) {
+		if (!isIdentifier(args.count as string)) {
 			return msg.reply("That is not a valid count identifier.");
 		}
 
@@ -29,4 +30,4 @@ module.exports = class GetCountCommand extends Command {
 
 		return msg.reply("The `" + args.count + "` count is currently at " + value + ".");
 	}
-};
+}
