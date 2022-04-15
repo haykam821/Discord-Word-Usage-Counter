@@ -14,10 +14,11 @@ const log = debug("discord-word-usage-counter");
 const config = require("../config.json") as WordUsageCounterConfig;
 
 const client = new Commando.Client({
+	intents: [
+		Intents.FLAGS.GUILD_MESSAGES,
+		Intents.FLAGS.GUILDS,
+	],
 	owner: config.owner,
-	ws: {
-		intents: Intents.NON_PRIVILEGED,
-	},
 });
 
 // Register groups/commands/arguments
@@ -27,7 +28,7 @@ client.registry.registerGroups([
 client.registry.registerDefaults();
 client.registry.registerCommandsIn(path.resolve(__dirname, "./commands"));
 
-client.on("message", async msge => {
+client.on("messageCreate", async msge => {
 	const msg = msge as CommandoMessage;
 	if (msg.isCommand) return;
 
